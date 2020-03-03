@@ -1,94 +1,69 @@
-import React, { useRef, useEffect } from 'react';
-import './App.scss';
-import Header from './components/Header';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import {
-  handleCity,
-  handleHover,
-  handleHoverExit,
-  staggerGrid
-} from './components/Animations';
+import React, { useEffect } from "react";
+import { Route } from "react-router-dom";
+import { gsap } from "gsap";
+import "./styles/App.scss";
+import Header from "./components/header";
+import Navigation from "./components/navigation";
 
-import gsap from 'gsap';
+import CaseStudies from "./pages/caseStudies";
+import Approach from "./pages/approach";
+import Services from "./pages/services";
+import About from "./pages/about";
+import Home from "./pages/home";
+
+const routes = [
+  { path: "/", name: "Home", Component: Home },
+  { path: "/case-studies", name: "caseStudies", Component: CaseStudies },
+  { path: "/approach", name: "approach", Component: Approach },
+  { path: "/services", name: "services", Component: Services },
+  { path: "/about-us", name: "about", Component: About }
+];
+
+function debounce(fn, ms) {
+  let timer;
+  return () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      timer = null;
+      fn.apply(this, arguments);
+    }, ms);
+  };
+}
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Header />
-        <div className="container">
-          <div className="wrapper">
-            <div className="home">
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/opportunities" component={Opportunities} />
-                <Route exact path="/solutions" component={Solutions} />
-                <Route exact path="/contact-us" component={Contact} />
-              </Switch>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Router>
-  );
-}
+  const [dimensions, setDimensions] = React.useState({
+    height: window.innerHeight,
+    width: window.innerWidth
+  });
 
-function Opportunities() {
-  return <p>Discover our numerous opportunities</p>;
-}
-
-function Solutions() {
   useEffect(() => {
-    const gridArr = document.getElementsByClassName('grid-item');
-    staggerGrid(gridArr);
-  }, []);
-  return (
-    <div className="solutions">
-      <p>Solutions that help you.</p>
+    // prevents flashing
+    gsap.to("body", 0, { css: { visibility: "visible" } });
+    const debouncedHandleResize = debounce(function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth
+      });
+    }, 1000);
 
-      <div class="grid-layout">
-        <div class="grid-item grid-item-1 logo">Logo</div>
-        <div class="grid-item grid-item-2 vid">Video</div>
-        <div class="grid-item span-3 grid-item-3 web-dev">Web Development</div>
-        <div class="grid-item grid-item-4">Facebook</div>
-        <div class="grid-item span-2 grid-item-5">Buisness Consultancy</div>
-        <div class="grid-item grid-item-6">Google</div>
-        <div class="grid-item grid-item-7">Instagram</div>
-        <div class="grid-item grid-item-8">Print</div>
-        <div class="grid-item grid-item-9">Branding</div>
-        <div class="grid-item grid-item-11">Youtube</div>
+    window.addEventListener("resize", debouncedHandleResize);
+    return () => {
+      window.removeEventListener("resize", debouncedHandleResize);
+    };
+  });
+  return (
+    <>
+      <Header dimensions={dimensions} />
+      <div className='App'>
+        {routes.map(({ path, Component }) => (
+          <Route key={path} exact path={path}>
+            <Component dimensions={dimensions} />
+          </Route>
+        ))}
       </div>
-    </div>
+      <Navigation />
+    </>
   );
 }
 
-function Contact() {
-  return <p>Feel free to reach us.</p>;
-}
-
-function Home() {
-  useEffect(() => {
-    gsap.from('.wrapper h5 ', {
-      duration: 0.8,
-      y: 100,
-      opacity: 0,
-      delay: 0.25,
-      ease: 'power3.inOut',
-      stagger: {
-        amount: 1
-      }
-    });
-  }, []);
-  return (
-    <div className="container">
-      <div className="wrapper">
-        <h5>
-          The <b>I G N I S</b>, is a creative, engineer driven, global agency
-          working on advancing the software, advertising and design communities
-          to new heights.
-        </h5>
-      </div>
-    </div>
-  );
-}
 export default App;
