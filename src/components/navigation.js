@@ -49,13 +49,13 @@ const Navigation = () => {
               </ul>
               <ul className='nav-info'>
                 <li className='nav-info-label'>Headquarter</li>
-                <li>Route du Jura 49</li>
-                <li>1700 Fribourg</li>
-                <li>Switzerland</li>
+                <li>Hatsmaut St. 49</li>
+                <li>Haifa</li>
+                <li>Israel</li>
               </ul>
               <ul className='nav-info'>
                 <li className='nav-info-label'>Phone</li>
-                <li>+41 (0) 79 510 28 70</li>
+                <li>+972 (52) 462 0545</li>
               </ul>
               <ul className='nav-info'>
                 <li className='nav-info-label'>Legal</li>
