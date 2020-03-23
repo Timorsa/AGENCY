@@ -14,9 +14,9 @@ Gsap : https://greensock.com/gsap/
 
 #### Desktop:
 
-![desk-1](.\gifs-for-doc\desk-1.gif)
+![desk-1](https://github.com/Timorsa/AGENCY/blob/master/gifs-for-doc/desk-1.gif)
 
-![desk-2](.\gifs-for-doc\desk-2.gif)
+![desk-2](./desk-2.gif)
 
 #### Mobile :
 
