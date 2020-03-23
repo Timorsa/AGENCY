@@ -12,13 +12,13 @@ Gsap : https://greensock.com/gsap/
 
 ## Screenshots
 
-#### Desktop:
+## Desktop:
 
 ![desk-1](https://github.com/Timorsa/AGENCY/blob/master/gifs-for-doc/desk-1.gif)
 
 ![desk-2](https://github.com/Timorsa/AGENCY/blob/master/gifs-for-doc//desk-2.gif)
 
-#### Mobile :
+## Mobile :
 
 ![phone-1](https://github.com/Timorsa/AGENCY/blob/master/gifs-for-doc/phone-1.gif)
 
