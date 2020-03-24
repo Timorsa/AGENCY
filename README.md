@@ -4,6 +4,8 @@ Recreation of an AWWWARDS nominee website (partly).
 
 MelRiver - https://melriver.com/
 
+## Live Demo : https://agency-awww-rec.herokuapp.com/
+
 ## Technologies Used
 
 #### REACT, GSAP
